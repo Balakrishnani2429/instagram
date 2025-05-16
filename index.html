@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Instagram Login</title>
+  <style>
+    body {
+      background: #fafafa;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .login-box {
+      background: white;
+      border: 1px solid #dbdbdb;
+      padding: 40px;
+      width: 300px;
+      text-align: center;
+    }
+    .login-box h2 {
+      font-family: 'Billabong', cursive;
+      font-size: 40px;
+      margin-bottom: 30px;
+    }
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 6px 0;
+      border: 1px solid #dbdbdb;
+      border-radius: 3px;
+      background: #fafafa;
+    }
+    input[type="button"] {
+      background-color: #3897f0;
+      color: white;
+      border: none;
+      padding: 10px;
+      width: 100%;
+      margin-top: 10px;
+      border-radius: 3px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .note {
+      color: red;
+      margin-top: 15px;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <h2>Instagram</h2>
+    <input type="text" id="username" placeholder="Phone number, username, or email" required><br>
+    <input type="password" id="password" placeholder="Password" required><br>
+    <input type="button" value="Log In" onclick="saveToFile()">
+    <div class="note">This is a demo. Credentials will be downloaded in a .txt file.</div>
+  </div>
+
+  <script>
+    function saveToFile() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      if (!username || !password) {
+        alert("Please fill in both fields.");
+        return;
+      }
+
+      const text = `Username: ${username}\nPassword: ${password}`;
+      const blob = new Blob([text], { type: "text/plain" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "login_credentials.txt";
+      link.click();
+    }
+  </script>
+</body>
+</html>
